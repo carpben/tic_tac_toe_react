@@ -2,12 +2,13 @@
 import { jsx } from "@emotion/react";
 import { FC } from "react";
 import { PLAYER, PLAYERS } from "../tools/players";
+import { DR } from "../tools/types/readOnly";
 
 interface Props {
     player: PLAYER
 }
 
-const NextMove: FC<Props> = (props)=>(
+const NextMove: FC<DR<Props>> = (props)=>(
     <div
     css={{
       marginBottom: 20,

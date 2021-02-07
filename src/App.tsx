@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, {  } from "react";
+import React, { FC } from "react";
 import { useImmer } from "use-immer";
 import { getArr } from "./tools/arrays";
 import { PLAYER } from "./tools/players";
@@ -19,7 +19,7 @@ const initState: State = {
   currentPlayer: PLAYER.player1,
 };
 
-function App() {
+const App: FC = () => {
   const [state, setState] = useImmer(initState);
 
   const result = getResult(state.board);
