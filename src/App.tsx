@@ -1,24 +1,61 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @jsxImportSource @emotion/react */
+import "./App.css";
+import React, {  } from "react";
+import { useImmer } from "use-immer";
+import { getArr } from "./tools/arrays";
+import { PLAYER } from "./tools/players";
+import { BoardState } from "./tools/types/board";
+import { getResult } from "./tools/getResult";
+import Result from "./components/Result";
+import NextMove from "./components/NextMove";
+import Board from "./components/Board";
+
+interface State {
+  board: BoardState;
+  currentPlayer: PLAYER;
+}
+
+const initState: State = {
+  board: getArr(3, () => getArr(3, () => undefined)),
+  currentPlayer: PLAYER.player1,
+};
 
 function App() {
+  const [state, setState] = useImmer(initState);
+
+  const result = getResult(state.board);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      css={{
+        width: 800,
+        margin: "auto",
+      }}
+    >
+
+      <NextMove player={state.currentPlayer} />
+
+      <Board
+        board={state.board}
+        handleClick={(row, column) => {
+          if (result != undefined) {
+            return;
+          }
+          setState((draftSt) => {
+            draftSt.board[row][column] = draftSt.currentPlayer;
+            draftSt.currentPlayer =
+              draftSt.currentPlayer === PLAYER.player1
+                ? PLAYER.player2
+                : PLAYER.player1;
+          });
+        }}
+      />
+
+      <Result
+        onRefresh={() => setState(() => initState)}
+        result={result}
+      />
+
     </div>
   );
 }
