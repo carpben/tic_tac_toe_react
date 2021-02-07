@@ -26,7 +26,7 @@ const Cell: FC<Props> = (props) => {
         },
       ]}
     >
-     { player!=undefined &&  PLAYERS[player].symbol}
+     { player!==undefined &&  PLAYERS[player].symbol}
     </button>
   );
 };

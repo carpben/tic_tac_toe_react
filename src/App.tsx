@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import "./App.css";
 import React, {  } from "react";
 import { useImmer } from "use-immer";
 import { getArr } from "./tools/arrays";
@@ -38,7 +37,7 @@ function App() {
       <Board
         board={state.board}
         handleClick={(row, column) => {
-          if (result != undefined) {
+          if (result !== undefined) {
             return;
           }
           setState((draftSt) => {
