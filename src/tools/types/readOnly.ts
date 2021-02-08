@@ -6,7 +6,7 @@ export type Primitive = null | undefined | string | number | boolean | symbol | 
 
 type DeepReadonly<T> =
 	// tslint:disable-next-line: ban-types
-	T extends AnyFunction | Primitive 
+	T extends AnyFunction | Primitive
 		? T
 		: T extends ReadonlyArray<infer R>
 		? IDRArray<R>
@@ -23,7 +23,6 @@ interface IDRArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 type DRObject<T> = {
 	readonly [P in keyof T]: DeepReadonly<T[P]>
 }
-
 
 interface IDRMap<K, V> extends ReadonlyMap<DeepReadonly<K>, DeepReadonly<V>> {}
 

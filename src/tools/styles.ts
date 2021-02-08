@@ -1,17 +1,17 @@
-import { css } from "@emotion/react";
+import { css } from "@emotion/react"
 
 const baseNormalizer = css({
-    padding: "unset",
-    backgroundColor: "unset",
-    border: "unset",
-    ":focus" :  {
-        outline: "none",
-    }
+	padding: "unset",
+	backgroundColor: "unset",
+	border: "unset",
+	":focus": {
+		outline: "none",
+	},
 })
 
 export const btnNormalize = [
-    baseNormalizer,
-    css({
-        cursor: "pointer"
-    })
+	baseNormalizer,
+	css({
+		cursor: "pointer",
+	}),
 ]
