@@ -31,13 +31,12 @@ const App: FC = () => {
         margin: "auto",
       }}
     >
-
       <NextMove player={state.currentPlayer} />
 
       <Board
         board={state.board}
         handleClick={(row, column) => {
-          if (result !== undefined) {
+          if (result !== undefined || state.board[row][column] !== undefined) {
             return;
           }
           setState((draftSt) => {
@@ -50,13 +49,9 @@ const App: FC = () => {
         }}
       />
 
-      <Result
-        onRefresh={() => setState(() => initState)}
-        result={result}
-      />
-
+      <Result onRefresh={() => setState(() => initState)} result={result} />
     </div>
   );
-}
+};
 
 export default App;
